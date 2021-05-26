@@ -12,7 +12,7 @@ POST http://localhost:/create/link
 
 ## GET : enter shortend URL
 ```
-http://localhost:3000/{shortened-code}
+GET http://localhost:3000/{shortened-code}
 ```
 
 ### Made by https://www.github.com/Kevin-Aaaquil
