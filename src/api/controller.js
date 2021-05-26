@@ -9,12 +9,10 @@ const getUrl = async (data)=>{                                        // receive
 if(!data.length===6) throw {message:"invalid code",code:404}
 let uri = await (await DB()).collection('shorten').findOne({"code":data})
 if(!uri) throw {message:"invalid code",code:404}
-console.log(uri.url)
 return uri.url
 };
 
-const createCode = async (data)=>{     
-    console.log(data)                               // receives url and returns code
+const createCode = async (data)=>{                                     // receives url and returns code
 if(!data.startsWith('https://') && !data.startsWith('http://'))
 {
     data='https://'+data;

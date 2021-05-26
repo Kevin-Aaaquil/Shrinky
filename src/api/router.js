@@ -5,10 +5,6 @@ const DB = require('../db');
 const controller = require('./controller');
 const ObjectId = require('mongodb').ObjectId;
 
-router.get('/hello',(req,res)=>{
-    res.send("hello");
-})
-
 router.get('/:code', (req, res) => {
     controller.getUrl(req.params.code.toString())
         .then((link) => {
@@ -22,7 +18,6 @@ router.get('/:code', (req, res) => {
 
 
 router.post('/create/link', (req, res) => {
-    console.log("hello")
     controller.createCode(req.body.link.toString())
         .then((code) => {
             res.status(203).json({ link: `localhost:3000/${code}` })
