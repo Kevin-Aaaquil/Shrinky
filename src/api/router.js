@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const DB = require('../db');
 const controller = require('./controller');
 const ObjectId = require('mongodb').ObjectId;
+require('dotenv').config();
 
 router.get('/:code', (req, res) => {
     controller.getUrl(req.params.code.toString())
@@ -30,6 +31,15 @@ router.post('/create/link', (req, res) => {
             res.status(404).json({ code: err.code, message: err.message, success: false })
         })
 
+})
+
+router.delete(`/delete/${process.env.password}`,async (req,res)=>{
+   try {await (await DB()).collection('shorten').remove({},()=>{
+        res.send("Deleted");
+    });}
+    catch(err){
+        res.send(err);
+    }
 })
 
 
