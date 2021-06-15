@@ -13,11 +13,12 @@ return uri.url
 };
 
 const createCode = async (data)=>{                                     // receives url and returns code
+    if(!validurl.isUri(data)) throw {code:404, message:"Not a valid url"}
 if(!data.startsWith('https://') && !data.startsWith('http://'))
 {
     data='https://'+data;
 }
-if(!validurl.isUri(data)) throw {code:404, message:"Not a valid url"}
+
 let iscode = await(await DB()).collection('shorten').findOne({"url":data})
 if(iscode)
 {
