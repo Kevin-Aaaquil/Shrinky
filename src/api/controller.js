@@ -13,11 +13,15 @@ return uri.url
 };
 
 const createCode = async (data)=>{                                     // receives url and returns code
-    if(!validurl.isUri(data)) throw {code:404, message:"Not a valid url"}
+    const urlRegex = new RegExp(
+        /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
+    );
+    if (!urlRegex.test(data)) throw { code: 422, message: 'invalid url' };
 if(!data.startsWith('https://') && !data.startsWith('http://'))
 {
     data='https://'+data;
 }
+
 
 let iscode = await(await DB()).collection('shorten').findOne({"url":data})
 if(iscode)
