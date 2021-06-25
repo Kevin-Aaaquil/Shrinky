@@ -49,7 +49,7 @@ router.delete(`/delete/${process.env.password}`,async (req,res)=>{
     }
 })
 
-router.get('/result',(req,res)=>{
+router.post('/result',(req,res)=>{
 if(hash){
     res.status(203).render('result.ejs',{link:`shrinkky.herokuapp.com/${hash}`})
     hash = 0;
