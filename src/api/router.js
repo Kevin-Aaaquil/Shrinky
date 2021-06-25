@@ -24,15 +24,15 @@ router.get('/create/link',(req,res)=>{
     res.redirect('/');
 })
 
-let hash ; 
+//let hash ; 
 router.post('/create/link', (req, res) => {
     controller.createCode(req.body.link.toString())
         .then((code) => {
            // res.status(203).json({ link: `localhost:3000/${code}` })
-           hash = code;
-           res.redirect('/result')
+        //    hash = code;
+        //    res.redirect('/result')
            
-          // res.status(203).render('result.ejs',{link:`shrinkky.herokuapp.com/${code}`})
+           res.status(203).render('result.ejs',{link:`shrinkky.herokuapp.com/${code}`})
         })
         .catch((err) => {
             res.status(404).json({ code: err.code, message: err.message, success: false })
@@ -47,16 +47,6 @@ router.delete(`/delete/${process.env.password}`,async (req,res)=>{
     catch(err){
         res.send(err);
     }
-})
-
-router.post('/result',(req,res)=>{
-if(hash){
-    res.status(203).render('result.ejs',{link:`shrinkky.herokuapp.com/${hash}`})
-    hash = 0;
-}
-else{
-    res.redirect('/')
-}
 })
 
 
