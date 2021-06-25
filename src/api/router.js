@@ -20,6 +20,9 @@ router.get('/',(req,res)=>{
 res.render('index.ejs')
 })
 
+router.get('/create/link',(req,res)=>{
+    res.redirect('/');
+})
 
 router.post('/create/link', (req, res) => {
     controller.createCode(req.body.link.toString())
@@ -42,7 +45,9 @@ router.delete(`/delete/${process.env.password}`,async (req,res)=>{
     }
 })
 
+const idk =  (code)=>{
 
+}
 
 
 
