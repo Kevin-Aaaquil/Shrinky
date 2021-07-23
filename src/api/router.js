@@ -16,21 +16,14 @@ router.get('/:code', (req, res) => {
         })
 })
 
-router.get('/',(req,res)=>{
-res.render('index.ejs')
-})
-
-router.get('/create/link',(req,res)=>{
-    res.redirect('/');
-})
 
 
 router.post('/create/link', (req, res) => {
     controller.createCode(req.body.link.toString())
         .then((code) => {
            // res.status(203).json({ link: `localhost:3000/${code}` })
-           
-           res.status(203).render('result.ejs',{link:`shrinkky.herokuapp.com/${code}`})
+           res.status(203).json({link:`https://shrinkky.herokuapp.com/${code}`})
+          // res.status(203).render('result.ejs',{link:`shrinkky.herokuapp.com/${code}`})
         })
         .catch((err) => {
             res.status(404).json({ code: err.code, message: err.message, success: false })
