@@ -21,7 +21,8 @@ router.post('/fetch/link', (req, res) => {
 router.post('/create/link', (req, res) => {
     controller.createCode(req.body.link.toString())
         .then((code) => {
-           res.status(203).json({link:`https://shrinkky.herokuapp.com/${code}`})            //later change to frontend link
+           //res.status(203).json({link:`https://shrinkky.herokuapp.com/${code}`})            //later change to frontend link
+           res.status(203).json({code:code})
         })
         .catch((err) => {
             res.status(404).json({ code: err.code, message: err.message, success: false })
