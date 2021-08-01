@@ -18,7 +18,7 @@ app.use(routes);
 
 
 try{
-    let port = process.env.PORT || 3000;
+    let port = process.env.PORT || 5000;
     app.listen(port,()=>{
         console.log(chalk.magenta(`listening on port ${port}`))
     });
